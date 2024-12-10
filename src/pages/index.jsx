@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { 
   IconButton, 
   Slider, 
@@ -25,8 +25,7 @@ import {
   VolumeDown,
   VolumeMute
 } from '@mui/icons-material';
-import './styles.css';
-import ReactDOM from 'react-dom'; // Add this import at the top
+import './styles.css'; // Add this import at the top
 
 const purpleTheme = createTheme({
   palette: {
@@ -221,13 +220,7 @@ const AudioPlayer = () => {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
-  const handleProgressClick = (e) => {
-    const progressBar = e.currentTarget;
-    const rect = progressBar.getBoundingClientRect();
-    const position = (e.clientX - rect.left) / rect.width;
-    const audio = document.getElementById('bgMusic');
-    audio.currentTime = position * duration;
-  };
+  
 
   const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value);
@@ -237,6 +230,8 @@ const AudioPlayer = () => {
   };
 
   const toggleShuffle = () => setIsShuffling(!isShuffling);
+
+  
   const toggleRepeat = () => setIsRepeating(!isRepeating);
 
   const toggleMusic = async () => {
